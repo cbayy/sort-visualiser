@@ -2,17 +2,17 @@ package sortVisualiser;
 
 public class InsertionSort {
 
-    public void sort(int[] arr){
-        int i = 1;
-        while(i < arr.length){
-            int j = i;
-            while (j > 0 && arr[j-1] > arr[j]){
-                int temp = arr[j];
-                arr[j] = arr[j-1];
-                arr[j-1] = temp;
+    public void sort(SVPanel sv) {
+        for (int i = 0; i < sv.getLength(); i++) {
+            int curr = sv.get(i);
+            int j = i - 1;
+            while (j >= 0 && sv.get(j) > curr) {
+                sv.update(j + 1, sv.get(j));
                 j--;
             }
-            i++;
+            sv.update(j + 1, curr);
         }
+
     }
+
 }
