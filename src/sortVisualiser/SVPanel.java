@@ -8,7 +8,7 @@ import java.util.Random;
 public class SVPanel extends JPanel {
 
     static int COL_X = 10;
-    static int BARS = visualiserDriver.WINDOW_X / COL_X;
+    static int BARS = VisualiserDriver.WINDOW_X / COL_X;
     public int[] arr;
 
     public SVPanel(){
@@ -18,6 +18,7 @@ public class SVPanel extends JPanel {
             arr[i] = i;
         }
         arrayRandom();
+        new InsertionSort().sort(arr);
     }
 
     public void arrayRandom(){
@@ -35,7 +36,7 @@ public class SVPanel extends JPanel {
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
         for(int i = 0; i < arr.length; i++){
-            g2D.fillRect(i + COL_X * i,visualiserDriver.WINDOW_Y-arr[i]-100,COL_X,arr[i]);
+            g2D.fillRect(i + COL_X * i, VisualiserDriver.WINDOW_Y-arr[i]-100,COL_X,arr[i]);
         }
 
     }

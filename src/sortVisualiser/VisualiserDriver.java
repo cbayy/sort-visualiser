@@ -2,7 +2,7 @@ package sortVisualiser;
 
 import javax.swing.*;
 
-public class visualiserDriver {
+public class VisualiserDriver {
 
     JFrame frame;
     SVPanel svPanel;
@@ -11,10 +11,10 @@ public class visualiserDriver {
     public static int WINDOW_Y = 800;
 
     public static void main(String[] args){
-        visualiserDriver vd = new visualiserDriver();
+        VisualiserDriver vd = new VisualiserDriver();
     }
 
-    public visualiserDriver(){
+    public VisualiserDriver(){
         frame = new JFrame("Sort Visualiser");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200,800);
