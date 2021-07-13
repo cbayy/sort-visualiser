@@ -7,10 +7,11 @@ import java.util.Random;
 
 public class SVPanel extends JPanel {
 
-    static int COL_X = 10;
+    static int COL_X = 6;
     static int BARS = VisualiserDriver.WINDOW_X / COL_X;
     private final int[] arr;
     private int[] colours;
+    private String sortString;
 
     public SVPanel(){
         setBackground(Color.black);
@@ -56,10 +57,20 @@ public class SVPanel extends JPanel {
         colours[index] = 0;
     }
 
+    public void setSortString(String sort){
+        sortString = sort;
+    }
+
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
+
+        g.setColor(Color.white);
+        Font font = g.getFont().deriveFont( 30.0f );
+        g.setFont(font);
+        g2D.drawString(sortString, 40,40);
+
         for(int i = 0; i < arr.length; i++){
 
             if(colours[i] > 0){
@@ -68,9 +79,10 @@ public class SVPanel extends JPanel {
                 g2D.setColor(Color.white);
             }
 
-            g2D.fillRect(i + COL_X * i + 20, VisualiserDriver.WINDOW_Y-arr[i]-300,COL_X,arr[i]);
+            g2D.fillRect(i + COL_X * i + 50, VisualiserDriver.WINDOW_Y-arr[i]-300,COL_X,arr[i]);
 
         }
 
     }
+
 }

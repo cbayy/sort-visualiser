@@ -3,6 +3,7 @@ package sortVisualiser;
 public class InsertionSort {
 
     public void sort(SVPanel sv) {
+        sv.setSortString("Insertion Sort");
         for (int i = 0; i < sv.getLength(); i++) {
             int curr = sv.get(i);
             int j = i - 1;

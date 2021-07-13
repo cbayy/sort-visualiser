@@ -31,7 +31,8 @@ public class VisualiserDriver {
         InsertionSort iSort = new InsertionSort();
         iSort.sort(svPanel);
         svPanel.arrayRandom();
-        iSort.sort(svPanel);
+        MergeSort mSort = new MergeSort();
+        mSort.sort(svPanel);
     }
 
 }
