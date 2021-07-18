@@ -6,8 +6,8 @@ public class MergeSort {
         mergeSort(sv, 0 , sv.getLength()-1 );
     }
 
-    private void mergeSort(SVPanel sv, int left, int right){
-        if(right == left){
+    void mergeSort(SVPanel sv, int left, int right){
+        if(right <= left){
             return;
         }
         int middle = left + (right-left)/2;
@@ -16,7 +16,7 @@ public class MergeSort {
         merge(sv, left, right, middle);
     }
 
-    private void merge(SVPanel sv, int left, int right, int middle){
+    void merge(SVPanel sv, int left, int right, int middle){
         int leftPartition[] = new int[middle-left+1];
         int rightPartition[] = new int[right-middle];
 
@@ -32,26 +32,19 @@ public class MergeSort {
         int j = 0;
         int target = left;
         while (i < leftPartition.length && j < rightPartition.length) {
-            if (leftPartition[i] <= rightPartition[j]) {
-                sv.update(target, leftPartition[i]);
-                i++;
+            if (leftPartition[i] < rightPartition[j]) {
+                sv.update(target++, leftPartition[i++]);
             }
             else {
-                sv.update(target, rightPartition[j]);
-                j++;
+                sv.update(target++, rightPartition[j++]);
             }
-            target++;
         }
 
         while (i < leftPartition.length) {
-            sv.update(target, leftPartition[i]);
-            i++;
-            target++;
+            sv.update(target++, leftPartition[i++]);
         }
         while (j < rightPartition.length) {
-            sv.update(target, rightPartition[j]);
-            j++;
-            target++;
+            sv.update(target++, rightPartition[j++]);
         }
     }
 }

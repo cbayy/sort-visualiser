@@ -61,6 +61,11 @@ public class SVPanel extends JPanel {
         sortString = sort;
     }
 
+    /*
+    NEXT:
+        Display running time, number of comparisons
+     */
+
     @Override
     public void paintComponent(Graphics g){
         Graphics2D g2D = (Graphics2D) g;
