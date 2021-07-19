@@ -28,6 +28,8 @@ public class VisualiserDriver {
     }
 
     public void run(){
+        QuickSort qSort = new QuickSort();
+        qSort.sort(svPanel);
         InsertionSort iSort = new InsertionSort();
         iSort.sort(svPanel);
         svPanel.arrayRandom();

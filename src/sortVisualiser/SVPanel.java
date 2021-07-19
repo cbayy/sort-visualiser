@@ -40,6 +40,10 @@ public class SVPanel extends JPanel {
         return arr[index];
     }
 
+    public void set(int index, int value){
+        arr[index] = value;
+    }
+
     public int getLength(){
         return arr.length;
     }
