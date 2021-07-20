@@ -3,6 +3,7 @@ package sortVisualiser;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
+import javax.sound.midi.*;
 
 
 public class SVPanel extends JPanel {
@@ -12,9 +13,11 @@ public class SVPanel extends JPanel {
     private final int[] arr;
     private int[] colours;
     private String sortString;
+   MidiPlayer midiPlayer;
 
     public SVPanel(){
         setBackground(Color.black);
+        midiPlayer = new MidiPlayer();
         //Sorted placeholder array
         arr = new int[BARS];
         colours = new int[BARS];
@@ -24,6 +27,7 @@ public class SVPanel extends JPanel {
         }
         arrayRandom();
 
+        //midiPlayer.setUpPlayer(0);
     }
 
     public void arrayRandom(){
@@ -52,6 +56,8 @@ public class SVPanel extends JPanel {
         arr[index] = value;
         colours[index] = 1;
         repaint();
+
+        midiPlayer.play(value);
         long timeElapsed;
 
         final long startTime = System.nanoTime();
@@ -74,7 +80,6 @@ public class SVPanel extends JPanel {
     public void paintComponent(Graphics g){
         Graphics2D g2D = (Graphics2D) g;
         super.paintComponent(g2D);
-
         g.setColor(Color.white);
         Font font = g.getFont().deriveFont( 30.0f );
         g.setFont(font);

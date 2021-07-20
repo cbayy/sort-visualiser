@@ -1,6 +1,7 @@
 package sortVisualiser;
 
 import javax.swing.*;
+import javax.sound.midi.*;
 
 public class VisualiserDriver {
 
@@ -30,11 +31,13 @@ public class VisualiserDriver {
     public void run(){
         QuickSort qSort = new QuickSort();
         qSort.sort(svPanel);
-        InsertionSort iSort = new InsertionSort();
-        iSort.sort(svPanel);
         svPanel.arrayRandom();
         MergeSort mSort = new MergeSort();
         mSort.sort(svPanel);
+        //svPanel.arrayRandom();
+        //InsertionSort iSort = new InsertionSort();
+        //iSort.sort(svPanel);
+
     }
 
 }
