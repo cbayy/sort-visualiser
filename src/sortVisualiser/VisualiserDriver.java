@@ -44,18 +44,6 @@ public class VisualiserDriver extends Thread {
 
     public void run(){
         svPanel.arrayRandom();
-        switch (currentSort){
-            case QS:
-                QuickSort qSort = new QuickSort();
-                qSort.sort(svPanel);
-                break;
-            case MS:
-                MergeSort mSort = new MergeSort();
-                mSort.sort(svPanel);
-                break;
-        }
-
-
 
     }
 
@@ -73,9 +61,13 @@ public class VisualiserDriver extends Thread {
     }
 
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource() == btnMergeSort) {
             currentSort = SortType.MS;
-            vd.start();
+            SortThread t = new SortThread(currentSort, svPanel);
+
+            new Thread(t).start();
+
         }
         if(e.getSource() == btnQuickSort) {
             currentSort = SortType.QS;

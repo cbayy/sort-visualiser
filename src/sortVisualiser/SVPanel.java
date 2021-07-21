@@ -9,7 +9,7 @@ import javax.sound.midi.*;
 public class SVPanel extends JPanel {
 
     static int COL_X = 6;
-    static int BARS = VisualiserDriver.WINDOW_X / COL_X;
+    static int BARS = VisualiserDriver.WINDOW_X / COL_X - 20;
     private final int[] arr;
     private int[] colours;
     private String sortString;
