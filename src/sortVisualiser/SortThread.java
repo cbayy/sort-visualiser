@@ -22,6 +22,10 @@ public class SortThread implements Runnable{
                 MergeSort mSort = new MergeSort();
                 mSort.sort(svPanel);
                 break;
+            case IS:
+                InsertionSort iSort = new InsertionSort();
+                iSort.sort(svPanel);
+                break;
         }
     }
 }

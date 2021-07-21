@@ -13,6 +13,7 @@ public class VisualiserDriver extends Thread {
 
     static JButton btnMergeSort;
     static JButton btnQuickSort;
+    static JButton btnInsertionSort;
     private SortType currentSort;
     static VisualiserDriver vd;
 
@@ -46,14 +47,17 @@ public class VisualiserDriver extends Thread {
     public void setUpConPanel(){
         btnMergeSort = new JButton("Merge Sort");
         btnQuickSort = new JButton("Quick Sort");
+        btnInsertionSort = new JButton("Insertion Sort");
 
         btnQuickSort.addActionListener(this::actionPerformed);
         btnMergeSort.addActionListener(this::actionPerformed);
+        btnInsertionSort.addActionListener(this::actionPerformed);
 
         conPanel.setLayout(new BoxLayout(conPanel, BoxLayout.PAGE_AXIS));
 
         conPanel.add(btnMergeSort);
         conPanel.add(btnQuickSort);
+        conPanel.add(btnInsertionSort);
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -64,6 +68,9 @@ public class VisualiserDriver extends Thread {
         }
         if(e.getSource() == btnQuickSort) {
             currentSort = SortType.QS;
+        }
+        if(e.getSource() == btnInsertionSort) {
+            currentSort = SortType.IS;
         }
 
         SortThread t = new SortThread(currentSort, svPanel);
