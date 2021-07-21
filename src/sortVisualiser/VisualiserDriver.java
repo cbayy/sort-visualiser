@@ -42,10 +42,6 @@ public class VisualiserDriver extends Thread {
 
     }
 
-    public void run(){
-        svPanel.arrayRandom();
-
-    }
 
     public void setUpConPanel(){
         btnMergeSort = new JButton("Merge Sort");
@@ -64,15 +60,15 @@ public class VisualiserDriver extends Thread {
 
         if(e.getSource() == btnMergeSort) {
             currentSort = SortType.MS;
-            SortThread t = new SortThread(currentSort, svPanel);
-
-            new Thread(t).start();
 
         }
         if(e.getSource() == btnQuickSort) {
             currentSort = SortType.QS;
-            vd.start();
         }
+
+        SortThread t = new SortThread(currentSort, svPanel);
+
+        new Thread(t).start();
     }
 
 }

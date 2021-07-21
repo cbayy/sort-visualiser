@@ -12,6 +12,7 @@ public class SortThread implements Runnable{
 
 
     public void run(){
+        svPanel.arrayRandom();
         switch (currentSort){
             case QS:
                 QuickSort qSort = new QuickSort();
