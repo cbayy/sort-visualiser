@@ -26,7 +26,7 @@ public class SVPanel extends JPanel {
             colours[i] = 0;
         }
         arrayRandom();
-
+        sortString = "Select sort";
         //midiPlayer.setUpPlayer(0);
     }
 

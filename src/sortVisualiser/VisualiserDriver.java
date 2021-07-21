@@ -2,18 +2,27 @@ package sortVisualiser;
 
 import javax.swing.*;
 import javax.sound.midi.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 
-public class VisualiserDriver {
+public class VisualiserDriver extends Thread {
 
     private final JFrame frame;
     private final SVPanel svPanel;
+    private final JPanel conPanel;
+
+    static JButton btnMergeSort;
+    static JButton btnQuickSort;
+    private SortType currentSort;
+    static VisualiserDriver vd;
 
     public static int WINDOW_X = 1200;
     public static int WINDOW_Y = 800;
 
+    public enum SortType{MS, QS, IS}
+
     public static void main(String[] args){
-        VisualiserDriver vd = new VisualiserDriver();
-        vd.run();
+        vd = new VisualiserDriver();
     }
 
     public VisualiserDriver(){
@@ -21,23 +30,57 @@ public class VisualiserDriver {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1500,800);
 
+        frame.setLayout(new BorderLayout());
 
         svPanel = new SVPanel();
-        frame.add(svPanel);
+        conPanel = new JPanel();
+        setUpConPanel();
+
+        frame.add(svPanel, BorderLayout.CENTER);
+        frame.add(conPanel, BorderLayout.EAST);
         frame.setVisible(true);
 
     }
 
     public void run(){
-        QuickSort qSort = new QuickSort();
-        qSort.sort(svPanel);
         svPanel.arrayRandom();
-        MergeSort mSort = new MergeSort();
-        mSort.sort(svPanel);
-        //svPanel.arrayRandom();
-        //InsertionSort iSort = new InsertionSort();
-        //iSort.sort(svPanel);
+        switch (currentSort){
+            case QS:
+                QuickSort qSort = new QuickSort();
+                qSort.sort(svPanel);
+                break;
+            case MS:
+                MergeSort mSort = new MergeSort();
+                mSort.sort(svPanel);
+                break;
+        }
 
+
+
+    }
+
+    public void setUpConPanel(){
+        btnMergeSort = new JButton("Merge Sort");
+        btnQuickSort = new JButton("Quick Sort");
+
+        btnQuickSort.addActionListener(this::actionPerformed);
+        btnMergeSort.addActionListener(this::actionPerformed);
+
+        conPanel.setLayout(new BoxLayout(conPanel, BoxLayout.PAGE_AXIS));
+
+        conPanel.add(btnMergeSort);
+        conPanel.add(btnQuickSort);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == btnMergeSort) {
+            currentSort = SortType.MS;
+            vd.start();
+        }
+        if(e.getSource() == btnQuickSort) {
+            currentSort = SortType.QS;
+            vd.start();
+        }
     }
 
 }

@@ -5,9 +5,9 @@ import javax.sound.midi.*;
 
 public class MidiPlayer {
 
-    private final ArrayList<Integer> notes;
     private Synthesizer synth;
     private final MidiChannel chan;
+    private final ArrayList<Integer> notes;
 
     public MidiPlayer(){
         try {
@@ -34,15 +34,14 @@ public class MidiPlayer {
         chan.programChange(instruments[151].getPatch().getProgram());
 
         notes = new ArrayList<>();
-        for (int i = 50; i <= 100; i += 1) {
+        for (int i = 50; i <= 1000; i += 1) {
             notes.add(i);
         }
     }
 
 
     public void play(int value) {
-        System.out.println(value);
-        int index = (int)((float)value/100 * (float) notes.size());
+        int index = (int)((float)value/1000 * (float) notes.size());
         int note = notes.get(index);
         chan.noteOn(note, 25);
     }
