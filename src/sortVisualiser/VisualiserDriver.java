@@ -82,10 +82,10 @@ public class VisualiserDriver extends Thread {
 
     }
 
-    public void activateButtons(Boolean active){
+    public static void activateButtons(Boolean active){
         btnMergeSort.setEnabled(active);
         btnQuickSort.setEnabled(active);
-        btnQuickSort.setEnabled(active);
+        btnInsertionSort.setEnabled(active);
     }
 
 }

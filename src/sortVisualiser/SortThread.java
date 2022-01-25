@@ -15,6 +15,7 @@ public class SortThread implements Runnable{
     public void run(){
         svPanel.arrayRandom();
         svPanel.setElapsedTime("N/A");
+        VisualiserDriver.activateButtons(false);
         long startTime = System.nanoTime();
         switch (currentSort) {
             case QS:
@@ -32,5 +33,6 @@ public class SortThread implements Runnable{
         }
         elapsedTime = System.nanoTime() - startTime;
         svPanel.setElapsedTime(String.valueOf(elapsedTime/1000000000));
+        VisualiserDriver.activateButtons(true);
     }
 }
