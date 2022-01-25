@@ -28,7 +28,6 @@ public class SVPanel extends JPanel {
         }
         sortString = "Select sort";
         elapsedTime = "N/A";
-        arrayRandom();
         //midiPlayer.setUpPlayer(0);
     }
 
