@@ -4,6 +4,7 @@ public class SortThread implements Runnable{
 
     private VisualiserDriver.SortType currentSort;
     private SVPanel svPanel;
+    public long elapsedTime;
 
     public SortThread(VisualiserDriver.SortType currentSort, SVPanel svPanel) {
         this.currentSort = currentSort;
@@ -13,7 +14,9 @@ public class SortThread implements Runnable{
 
     public void run(){
         svPanel.arrayRandom();
-        switch (currentSort){
+        svPanel.setElapsedTime("N/A");
+        long startTime = System.nanoTime();
+        switch (currentSort) {
             case QS:
                 QuickSort qSort = new QuickSort();
                 qSort.sort(svPanel);
@@ -27,5 +30,7 @@ public class SortThread implements Runnable{
                 iSort.sort(svPanel);
                 break;
         }
+        elapsedTime = System.nanoTime() - startTime;
+        svPanel.setElapsedTime(String.valueOf(elapsedTime/1000000000));
     }
 }

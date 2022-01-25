@@ -5,7 +5,7 @@ public class QuickSort {
     SVPanel sv;
 
     public void sort(SVPanel sv) {
-        sv.setSortString("Quicksort Sort");
+        sv.setSortString("Quicksort");
         this.sv = sv;
         quickSort(0, sv.getLength()-1);
     }

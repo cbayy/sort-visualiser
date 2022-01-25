@@ -2,7 +2,7 @@ package sortVisualiser;
 
 public class MergeSort {
     public void sort(SVPanel sv) {
-        sv.setSortString("Merge Sort");
+        sv.setSortString("Mergesort");
         mergeSort(sv, 0 , sv.getLength()-1 );
     }
 
