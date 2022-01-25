@@ -14,6 +14,7 @@ public class VisualiserDriver extends Thread {
     static JButton btnMergeSort;
     static JButton btnQuickSort;
     static JButton btnInsertionSort;
+    private JLabel runTimeLabel;
     private SortType currentSort;
     static VisualiserDriver vd;
 
@@ -55,6 +56,8 @@ public class VisualiserDriver extends Thread {
 
         conPanel.setLayout(new BoxLayout(conPanel, BoxLayout.PAGE_AXIS));
 
+        runTimeLabel = new JLabel("Time elapsed: ");
+
         conPanel.add(btnMergeSort);
         conPanel.add(btnQuickSort);
         conPanel.add(btnInsertionSort);
@@ -64,7 +67,6 @@ public class VisualiserDriver extends Thread {
 
         if(e.getSource() == btnMergeSort) {
             currentSort = SortType.MS;
-
         }
         if(e.getSource() == btnQuickSort) {
             currentSort = SortType.QS;
@@ -74,8 +76,9 @@ public class VisualiserDriver extends Thread {
         }
 
         SortThread t = new SortThread(currentSort, svPanel);
-
+        System.out.println("Start");
         new Thread(t).start();
+
     }
 
 }

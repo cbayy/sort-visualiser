@@ -13,7 +13,8 @@ public class SVPanel extends JPanel {
     private final int[] arr;
     private int[] colours;
     private String sortString;
-   MidiPlayer midiPlayer;
+    private String elapsedTime;
+    MidiPlayer midiPlayer;
 
     public SVPanel(){
         setBackground(Color.black);
@@ -22,11 +23,12 @@ public class SVPanel extends JPanel {
         arr = new int[BARS];
         colours = new int[BARS];
         for(int i = 0; i< arr.length; i++){
-            arr[i] = new Random().nextInt(100)+1;
+            arr[i] = new Random().nextInt(300)+1;
             colours[i] = 0;
         }
-        arrayRandom();
         sortString = "Select sort";
+        elapsedTime = "N/A";
+        arrayRandom();
         //midiPlayer.setUpPlayer(0);
     }
 
@@ -60,16 +62,20 @@ public class SVPanel extends JPanel {
         midiPlayer.play(value);
         long timeElapsed;
 
+        //Small break between each sort
         final long startTime = System.nanoTime();
         do{
             timeElapsed = System.nanoTime() - startTime;
         }while(timeElapsed < 5000000);
+
         colours[index] = 0;
     }
 
     public void setSortString(String sort){
         sortString = sort;
     }
+
+    public void setElapsedTime(String time){ elapsedTime = time; repaint();}
 
     /*
     NEXT:
@@ -84,9 +90,9 @@ public class SVPanel extends JPanel {
         Font font = g.getFont().deriveFont( 30.0f );
         g.setFont(font);
         g2D.drawString(sortString, 40,40);
+        g2D.drawString("Time taken : " + elapsedTime + " s", 400, 40);
 
         for(int i = 0; i < arr.length; i++){
-
             if(colours[i] > 0){
                 g2D.setColor(new Color(10,150,10));
             }else{
