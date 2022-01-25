@@ -14,6 +14,7 @@ public class VisualiserDriver extends Thread {
     static JButton btnMergeSort;
     static JButton btnQuickSort;
     static JButton btnInsertionSort;
+
     private JLabel runTimeLabel;
     private SortType currentSort;
     static VisualiserDriver vd;
@@ -79,6 +80,12 @@ public class VisualiserDriver extends Thread {
         System.out.println("Start");
         new Thread(t).start();
 
+    }
+
+    public void activateButtons(Boolean active){
+        btnMergeSort.setEnabled(active);
+        btnQuickSort.setEnabled(active);
+        btnQuickSort.setEnabled(active);
     }
 
 }
