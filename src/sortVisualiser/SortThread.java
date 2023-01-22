@@ -1,15 +1,17 @@
 package sortVisualiser;
 
+import javax.naming.ldap.Control;
+
 //Sort thread runs whenever a new sort is started, to prevent the GUI from freezing while the algorithm runs
 public class SortThread implements Runnable{
 
-    private VisualiserDriver.SortType currentSort;
+    private ControlPanel.SortType currentSort;
     private SVPanel svPanel;
 
     //Will return the time taken after thread ends
     public long elapsedTime;
 
-    public SortThread(VisualiserDriver.SortType currentSort, SVPanel svPanel) {
+    public SortThread(ControlPanel.SortType currentSort, SVPanel svPanel) {
         this.currentSort = currentSort;
         this.svPanel = svPanel;
     }
@@ -20,20 +22,20 @@ public class SortThread implements Runnable{
 
         //Prepares GUI for sort
         svPanel.setElapsedTime("N/A");
-        VisualiserDriver.activateButtons(false);
+        ControlPanel.activateButtons(false);
 
         //Runs a specific sort depending on currentSort(button pressed)
         long startTime = System.nanoTime();
         switch (currentSort) {
-            case QS:
+            case Quicksort:
                 QuickSort qSort = new QuickSort();
                 qSort.sort(svPanel);
                 break;
-            case MS:
+            case Merge_sort:
                 MergeSort mSort = new MergeSort();
                 mSort.sort(svPanel);
                 break;
-            case IS:
+            case Insertion_sort:
                 InsertionSort iSort = new InsertionSort();
                 iSort.sort(svPanel);
                 break;
@@ -41,6 +43,6 @@ public class SortThread implements Runnable{
         //Calculates and returns time
         elapsedTime = System.nanoTime() - startTime;
         svPanel.setElapsedTime(String.valueOf(elapsedTime/1000000000));
-        VisualiserDriver.activateButtons(true);
+        ControlPanel.activateButtons(true);
     }
 }

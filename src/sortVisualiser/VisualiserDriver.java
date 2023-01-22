@@ -18,13 +18,12 @@ public class VisualiserDriver extends Thread {
 
     //Text which appears about the current sort
     private JLabel runTimeLabel;
-    private SortType currentSort;
 
     public static int WINDOW_X = 1200;
     public static int WINDOW_Y = 800;
 
     //Current three types of sorts
-    public enum SortType{MS, QS, IS}
+
 
     public static void main(String[] args){
         vd = new VisualiserDriver();
@@ -39,55 +38,10 @@ public class VisualiserDriver extends Thread {
         frame.setLayout(new BorderLayout());
 
         svPanel = new SVPanel();
-        conPanel = new JPanel();
-        setUpConPanel();
+        conPanel = new ControlPanel(svPanel);
 
         frame.add(svPanel, BorderLayout.CENTER);
-        frame.add(conPanel, BorderLayout.EAST);
+        frame.add(conPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
-    }
-
-    //Sets up the control panel located on the right
-    public void setUpConPanel(){
-        btnMergeSort = new JButton("Merge Sort");
-        btnQuickSort = new JButton("Quick Sort");
-        btnInsertionSort = new JButton("Insertion Sort");
-
-        btnQuickSort.addActionListener(this::actionPerformed);
-        btnMergeSort.addActionListener(this::actionPerformed);
-        btnInsertionSort.addActionListener(this::actionPerformed);
-
-        conPanel.setLayout(new BoxLayout(conPanel, BoxLayout.PAGE_AXIS));
-
-        runTimeLabel = new JLabel("Time elapsed: ");
-
-        conPanel.add(btnMergeSort);
-        conPanel.add(btnQuickSort);
-        conPanel.add(btnInsertionSort);
-    }
-
-    // Handles request when any of the control buttons are pressed
-    public void actionPerformed(ActionEvent e) {
-
-        if(e.getSource() == btnMergeSort) {
-            currentSort = SortType.MS;
-        }
-        if(e.getSource() == btnQuickSort) {
-            currentSort = SortType.QS;
-        }
-        if(e.getSource() == btnInsertionSort) {
-            currentSort = SortType.IS;
-        }
-
-        SortThread t = new SortThread(currentSort, svPanel);
-        System.out.println("Start");
-        new Thread(t).start();
-    }
-
-    //Deactivates buttons during sort/ reactivate afterwards
-    public static void activateButtons(Boolean active){
-        btnMergeSort.setEnabled(active);
-        btnQuickSort.setEnabled(active);
-        btnInsertionSort.setEnabled(active);
     }
 }
