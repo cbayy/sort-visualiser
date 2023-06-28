@@ -9,14 +9,7 @@ This repository contains a tool for visualising different sorting algorithms. Th
 * Shows elapsed time on sort completion.
 
 # Requirements
-* IntelliJ IDE
 * JDK 11
-  
-# Usage
-* Clone the repository by running `git clone https://github.com/cbayy/sort-visualizer.git`
-* Open project in IntelliJ.
-* Click "Run VisualiserDriver".
-* Select preferred sorting algorithm to start the animation.
   
 # License
 This project is licensed under the MIT License. See the LICENSE file for more details.
